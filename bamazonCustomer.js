@@ -31,8 +31,8 @@ function start() {
 
 
         console.log(table.toString());
-
-        connection.end();
+        promptCustomer();
+        //connection.end();
 
     });
 };
@@ -47,12 +47,41 @@ function promptCustomer() {
         },
         {
             type: 'input',
-            name: 'enter_quantity',
+            name: 'quantity',
             message: 'How many do you want?'
         }
     ]).then(function (input) {
         var item = input.enter_id;
         var quantity = input.quantity;
+
+
+        connection.query('SELECT * FROM products WHERE ?', {item_id: item}, function (err, res){
+          var cost = res[0].price * quantity;
+          updatedQuantity = res[0].stock_quantity - quantity;
+          if (err) throw err;
+
+          console.log(cost);
+
+          if (res[0].stock_quantity < quantity) {
+            console.log("I'm sorry, we do not have enough of that product!");
+            connection.end();
+          } else if
+            (res[0].stock_quantity >= quantity) {
+              console.log("Thank you for your purchase!\nOrdering....")
+
+              connection.query('UPDATE products SET ? WHERE ?',[{stock_quantity: updatedQuantity}, {item_id: item}], function (err, res){
+                //connection.query('UPDATE products SET ? WHERE ?',[{stock_quantity: quantity}, {item_id: item}])
+                if (err) throw err;
+
+                console.log("Your order has been processed. Your total is $" + cost);
+                connection.end();
+              })
+              //console.log(res);
+            }
+
+
+
+        })
 
 
     })
