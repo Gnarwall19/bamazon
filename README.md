@@ -4,7 +4,7 @@ Bamazon is Amazon-like storefront developed using MySQL and NodeJS. This applica
 
 # How to Use
 
-To use Bamazon, first download the repository to your computer, then navigate to the folder using the Terminal/Command Prompt. Make sure that MySQL is running on your machine and type: **node bamazonCustomer**.
+To use Bamazon, first download the repository to your computer, then navigate to the folder using the Terminal/Command Prompt. **Make sure that MySQL is running** on your machine and type: **node bamazonCustomer**.
 
 If done correctly, this command should display the **Bamazon Product Table** where users can browse items, stock, prices, and departments.
 
@@ -12,4 +12,4 @@ Follow the command line prompt by entering the unique item ID for the product yo
 
 *This application was developed using **MySQL, NodeJS, & npm***
 
-*Find more fun applications at http://gnarwall19.github.io/michael-wolfe-portfolio *
+*Find more fun applications at http://gnarwall19.github.io/michael-wolfe-portfolio*
